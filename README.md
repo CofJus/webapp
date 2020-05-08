@@ -56,7 +56,7 @@ InfoDaoImpl：实现了InfoDao接口。
 &emsp;&emsp;queryAll：获取所有学生的健康信息。  
 &emsp;&emsp;queryByDanger：获取健康状况有异常的学生的信息，可获取学号后通过UserDao.queryById获取个人信息。  
 
-SignImpl：实现了SignDao接口。  
+SignDaoImpl：实现了SignDao接口。  
 &emsp;&emsp;updateById：根据id签到。可根据id制作二维码，扫描二维码并解析后调用。  
 &emsp;&emsp;queryById：根据学号查询某学生的签到情况。  
 &emsp;&emsp;queryByName：根据名字，同上。  
