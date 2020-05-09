@@ -26,9 +26,7 @@ public class CreateDb {
             "grade VARCHAR(5) NOT NULL,"+
             "major VARCHAR(25) NOT NULL," +
             "classname VARCHAR(10) NOT NULL," +
-            "phone VARCHAR(15) NOT NULL," +
-            "INDEX (id)," +
-            "INDEX (name))";
+            "phone VARCHAR(15) NOT NULL)";
 
     private static final String CREATE_TABLE_STUDENT_INFO = "CREATE TABLE Student_Info " +
             "(id VARCHAR(11) NOT NULL PRIMARY KEY," +
@@ -39,14 +37,12 @@ public class CreateDb {
             "danger TINYINT(1) NOT NULL)";
 
     private static final String CREATE_TABLE_SIGN_IN = "CREATE TABLE Sign_In "+
-            "(id VARCHAR(11) NOT NULL PRIMARY KEY," +
+            "(id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT," +
+            "user_id VARCHAR(11) NOT NULL," +
             "name VARCHAR(10) NOT NULL," +
             "date DATE," +
-            "signed TINYINT(1) NOT NULL DEFAULT (0)," +
-            "CONSTRAINT FK_Name FOREIGN KEY (name) REFERENCES user_register (name) ON DELETE CASCADE ON UPDATE CASCADE," +
-            "CONSTRAINT FK_ID FOREIGN KEY (id) REFERENCES user_register (id) ON DELETE CASCADE ON UPDATE CASCADE," +
-            "INDEX (id)," +
-            "INDEX (name))";
+            "signed TINYINT(2) NOT NULL DEFAULT (0)," +
+            "CONSTRAINT FK_ID FOREIGN KEY (user_id) REFERENCES user_register (id) ON DELETE CASCADE ON UPDATE CASCADE)";
 
     /**
      * 级联删除

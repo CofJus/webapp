@@ -24,8 +24,6 @@ public class UserDaoImpl implements UserDao {
                 TABLE_NAME +
                 " (id,username,password,name,academy,grade,major,classname,phone)" +
                 "VALUES (?,?,?,?,?,?,?,?,?)";
-        final String insertSign="INSERT INTO " +
-                "sign_in(id, name, date, signed) VALUES (?,?,?,?)";
         DbConnect dbConnect = new DbConnect();
         try {
             PreparedStatement preparedStatement = dbConnect.getConnection().prepareStatement(insert);
@@ -40,13 +38,6 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setString(9, user.getPhoneNumber());
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            PreparedStatement preparedStatement1=dbConnect.getConnection().prepareStatement(insertSign);
-            preparedStatement1.setString(1,user.getId());
-            preparedStatement1.setString(2,user.getName());
-            preparedStatement1.setTimestamp(3,null);
-            preparedStatement1.setInt(4,0);
-            preparedStatement1.executeUpdate();
-            preparedStatement1.close();
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         } finally {

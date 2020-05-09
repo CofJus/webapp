@@ -7,21 +7,26 @@ import java.sql.Date;
  */
 public class Sign {
 
-    private String id;
-    /**
-     * 学生姓名
-     * 同User.username
-     */
+    private int id;
+    private String userId;
     private String name;
     private Date date;
     private int signed;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getName() {
