@@ -1,4 +1,6 @@
-<%--
+<%@ page import="dao.UserDao" %>
+<%@ page import="static factory.DaoFactory.getUserDaoInstance" %>
+<%@ page import="vo.User" %><%--
   Created by IntelliJ IDEA.
   User: CofJu
   Date: 2020/4/25
@@ -11,6 +13,15 @@
     <title>FUCK JSP</title>
   </head>
   <body>
-  FUCK JSP
+  <%
+    UserDao userDao=getUserDaoInstance();
+    User user = userDao.queryById("1806010633");
+  %>
+  <tr>
+    <td><%=user.getId()%></td>
+    <td><%=user.getName()%></td>
+    <td><%=user.getAcademy()%></td>
+    <td><%=user.getMajor()%></td>
+  </tr>
   </body>
 </html>

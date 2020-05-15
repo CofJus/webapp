@@ -1,6 +1,12 @@
 package utils;
 
+import dao.UserDao;
+import vo.User;
+
 import java.sql.*;
+
+import static factory.DaoFactory.getUserDaoInstance;
+import static utils.Md5Util.doubleSalt;
 
 /**
  * @author Ji Rui
@@ -23,7 +29,7 @@ public class CreateDb {
             "password VARCHAR(32)NOT NULL," +
             "name VARCHAR(10) NOT NULL," +
             "academy VARCHAR(25) NOT NULL," +
-            "grade VARCHAR(5) NOT NULL,"+
+            "grade VARCHAR(5) NOT NULL," +
             "major VARCHAR(25) NOT NULL," +
             "classname VARCHAR(10) NOT NULL," +
             "phone VARCHAR(15) NOT NULL)";
@@ -36,7 +42,7 @@ public class CreateDb {
             "foreigners TINYINT(1) NOT NULL," +
             "danger TINYINT(1) NOT NULL)";
 
-    private static final String CREATE_TABLE_SIGN_IN = "CREATE TABLE Sign_In "+
+    private static final String CREATE_TABLE_SIGN_IN = "CREATE TABLE Sign_In " +
             "(id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT," +
             "user_id VARCHAR(11) NOT NULL," +
             "name VARCHAR(10) NOT NULL," +
@@ -52,7 +58,20 @@ public class CreateDb {
             "FOREIGN KEY(id) REFERENCES User_Register(id) " +
             "ON DELETE CASCADE";
 
+    private static final String PSW = doubleSalt("hhu123456");
+
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
+
+        User user = new User();
+        user.setUsername("admin");
+        user.setPassword(doubleSalt("hhu123456"));
+        user.setName("admin");
+        user.setId("admin");
+        user.setAcademy("");
+        user.setGrade("");
+        user.setMajor("");
+        user.setClassName("");
+        user.setPhoneNumber("");
 
         Class.forName(DB_DRIVER);
         Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -75,5 +94,7 @@ public class CreateDb {
                 connection.close();
             }
         }
+        UserDao userDao = getUserDaoInstance();
+        userDao.insert(user);
     }
 }
