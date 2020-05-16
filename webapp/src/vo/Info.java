@@ -1,5 +1,7 @@
 package vo;
 
+import java.sql.Date;
+
 /**
  * @author Ji Rui
  */
@@ -8,9 +10,18 @@ public class Info {
     private String id;
     private int hasFever;
     private int isHealthy;
-    private int hasContactWithPatients;
     private int hasContactWithForeigners;
     private int isDanger;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    private Date date;
 
     public String getId() {
         return id;
@@ -34,14 +45,6 @@ public class Info {
 
     public void setIsHealthy(int isHealthy) {
         this.isHealthy = isHealthy;
-    }
-
-    public int getHasContactWithPatients() {
-        return hasContactWithPatients;
-    }
-
-    public void setHasContactWithPatients(int hasContactWithPatients) {
-        this.hasContactWithPatients = hasContactWithPatients;
     }
 
     public int getHasContactWithForeigners() {

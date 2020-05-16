@@ -32,15 +32,18 @@ public class CreateDb {
             "grade VARCHAR(5) NOT NULL," +
             "major VARCHAR(25) NOT NULL," +
             "classname VARCHAR(10) NOT NULL," +
-            "phone VARCHAR(15) NOT NULL)";
+            "phone VARCHAR(15) NOT NULL," +
+            "country VARCHAR(10) NOT NULL," +
+            "province VARCHAR(10) NOT NULL," +
+            "city VARCHAR(10) NOT NULL)";
 
     private static final String CREATE_TABLE_STUDENT_INFO = "CREATE TABLE Student_Info " +
             "(id VARCHAR(11) NOT NULL PRIMARY KEY," +
             "fever TINYINT(1) NOT NULL," +
             "healthy TINYINT(1) NOT NULL," +
-            "patients TINYINT(1) NOT NULL," +
             "foreigners TINYINT(1) NOT NULL," +
-            "danger TINYINT(1) NOT NULL)";
+            "danger TINYINT(1) NOT NULL," +
+            "date DATE NOT NULL)";
 
     private static final String CREATE_TABLE_SIGN_IN = "CREATE TABLE Sign_In " +
             "(id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT," +
@@ -72,6 +75,9 @@ public class CreateDb {
         user.setMajor("");
         user.setClassName("");
         user.setPhoneNumber("");
+        user.setCountry("");
+        user.setProvince("");
+        user.setCity("");
 
         Class.forName(DB_DRIVER);
         Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);

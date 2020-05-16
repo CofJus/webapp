@@ -58,7 +58,6 @@ public class Demo {
         info.setId("1806010633");
         info.setHasFever(0);
         info.setIsHealthy(0);
-        info.setHasContactWithPatients(0);
         info.setHasContactWithForeigners(0);
         info.setIsDanger(0);
 

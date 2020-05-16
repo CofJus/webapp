@@ -22,8 +22,8 @@ public class UserDaoImpl implements UserDao {
 
         final String insert = "INSERT INTO " +
                 TABLE_NAME +
-                " (id,username,password,name,academy,grade,major,classname,phone)" +
-                "VALUES (?,?,?,?,?,?,?,?,?)";
+                " (id,username,password,name,academy,grade,major,classname,phone,country,province,city)" +
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         DbConnect dbConnect = new DbConnect();
         try {
             PreparedStatement preparedStatement = dbConnect.getConnection().prepareStatement(insert);
@@ -36,6 +36,9 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setString(7, user.getMajor());
             preparedStatement.setString(8, user.getClassName());
             preparedStatement.setString(9, user.getPhoneNumber());
+            preparedStatement.setString(10,user.getCountry());
+            preparedStatement.setString(11,user.getProvince());
+            preparedStatement.setString(12,user.getCity());
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException throwable) {
@@ -86,6 +89,9 @@ public class UserDaoImpl implements UserDao {
                 user.setMajor(resultSet.getString(7));
                 user.setClassName(resultSet.getString(8));
                 user.setPhoneNumber(resultSet.getString(9));
+                user.setCountry(resultSet.getString(10));
+                user.setProvince(resultSet.getString(11));
+                user.setCity(resultSet.getString(12));
             }
             resultSet.close();
             preparedStatement.close();

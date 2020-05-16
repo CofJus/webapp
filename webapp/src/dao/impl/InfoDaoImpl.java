@@ -21,16 +21,16 @@ public class InfoDaoImpl implements InfoDao {
         DbConnect dbConnect = new DbConnect();
         final String insert = "INSERT INTO " +
                 TABLE_NAME +
-                "(id,fever,healthy,patients,foreigners,danger)" +
+                "(id,fever,healthy,foreigners,danger,date)" +
                 "VALUES (?,?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = dbConnect.getConnection().prepareStatement(insert);
             preparedStatement.setString(1, info.getId());
             preparedStatement.setInt(2, info.getHasFever());
             preparedStatement.setInt(3, info.getIsHealthy());
-            preparedStatement.setInt(4, info.getHasContactWithPatients());
-            preparedStatement.setInt(5, info.getHasContactWithForeigners());
-            preparedStatement.setInt(6, info.getIsDanger());
+            preparedStatement.setInt(4, info.getHasContactWithForeigners());
+            preparedStatement.setInt(5, info.getIsDanger());
+            preparedStatement.setDate(6,info.getDate());
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException throwable) {
@@ -48,18 +48,18 @@ public class InfoDaoImpl implements InfoDao {
                 " SET id = ?," +
                 "fever = ?," +
                 "healthy = ?," +
-                "patients=?," +
                 "foreigners=?," +
-                "danger=? " +
+                "danger=?," +
+                "date=?" +
                 "WHERE id=?";
         try {
             PreparedStatement preparedStatement = dbConnect.getConnection().prepareStatement(update);
             preparedStatement.setString(1, info.getId());
             preparedStatement.setInt(2, info.getHasFever());
             preparedStatement.setInt(3, info.getIsHealthy());
-            preparedStatement.setInt(4, info.getHasContactWithPatients());
-            preparedStatement.setInt(5, info.getHasContactWithForeigners());
-            preparedStatement.setInt(6, info.getIsDanger());
+            preparedStatement.setInt(4, info.getHasContactWithForeigners());
+            preparedStatement.setInt(5, info.getIsDanger());
+            preparedStatement.setDate(5,info.getDate());
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException throwable) {
@@ -84,9 +84,9 @@ public class InfoDaoImpl implements InfoDao {
                 info.setId(resultSet.getString(1));
                 info.setHasFever(resultSet.getInt(2));
                 info.setIsHealthy(resultSet.getInt(3));
-                info.setHasContactWithPatients(resultSet.getInt(4));
-                info.setHasContactWithForeigners(resultSet.getInt(5));
-                info.setIsDanger(resultSet.getInt(6));
+                info.setHasContactWithForeigners(resultSet.getInt(4));
+                info.setIsDanger(resultSet.getInt(5));
+                info.setDate(resultSet.getDate(6));
             }
             resultSet.close();
             preparedStatement.close();
@@ -112,9 +112,9 @@ public class InfoDaoImpl implements InfoDao {
                 info.setId(resultSet.getString(1));
                 info.setHasFever(resultSet.getInt(2));
                 info.setIsHealthy(resultSet.getInt(3));
-                info.setHasContactWithPatients(resultSet.getInt(4));
-                info.setHasContactWithForeigners(resultSet.getInt(5));
-                info.setIsDanger(resultSet.getInt(6));
+                info.setHasContactWithForeigners(resultSet.getInt(4));
+                info.setIsDanger(resultSet.getInt(5));
+                info.setDate(resultSet.getDate(6));
                 arrayList.add(info);
             }
             resultSet.close();
@@ -143,9 +143,9 @@ public class InfoDaoImpl implements InfoDao {
                 info.setId(resultSet.getString(1));
                 info.setHasFever(resultSet.getInt(2));
                 info.setIsHealthy(resultSet.getInt(3));
-                info.setHasContactWithPatients(resultSet.getInt(4));
-                info.setHasContactWithForeigners(resultSet.getInt(5));
-                info.setIsDanger(resultSet.getInt(6));
+                info.setHasContactWithForeigners(resultSet.getInt(4));
+                info.setIsDanger(resultSet.getInt(5));
+                info.setDate(resultSet.getDate(6));
                 arrayList.add(info);
             }
             resultSet.close();
